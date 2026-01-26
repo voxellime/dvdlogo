@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style>
+    body {
+      margin: 0;
+      background: white; /* changed to white */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      height: 100vh;
+      overflow: hidden;
+    }
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      user-drag: none;
+      user-select: none;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <img src="dvd.png" alt="DVD Logo">
+</body>
+
+<script>
+let x = 100;
+let y = 100;
+let dx = 2;
+let dy = 2;
+
+const W = 220;
+const H = 160;
+
+function step() {
+  const sw = screen.availWidth;
+  const sh = screen.availHeight;
+
+  x += dx;
+  y += dy;
+
+  if (x <= 0 || x + W >= sw) dx *= -1;
+  if (y <= 0 || y + H >= sh) dy *= -1;
+
+  try {
+    window.moveTo(x, y);
+  } catch {}
+
+  requestAnimationFrame(step);
+}
+
+step();
+</script>
+</html>
+
